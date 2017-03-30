@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+100.times do
+  Product.create title: Faker::Hacker.say_something_smart,
+                 body: Faker::Hipster.paragraph,
+                 price: rand(100)
+end
+
+puts Cowsay.say 'Created 1000 products', :cow
