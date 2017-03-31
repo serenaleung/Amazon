@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
   validates(:title, { presence: { message: 'must be present!' },
                       uniqueness: true })
-  validates(:body,{ presence: true,
+  validates(:description,{ presence: true,
                   })
                     # numericality: {greater_than_or_equal_to: 10 }
   validates(:price, { presence: true,
