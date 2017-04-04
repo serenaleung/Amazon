@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
 
   belongs_to :category
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
 
   before_save :capitalize_title

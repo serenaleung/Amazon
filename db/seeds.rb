@@ -10,22 +10,33 @@
   Category.create(name: category)
 end
 
-1000.times do
+100.times do
   category = Category.all.sample
 
-  Product.create title: Faker::Hacker.say_something_smart,
+  p = Product.create title: Faker::Hacker.say_something_smart,
                  description: Faker::Hipster.paragraph,
                  price: rand(100),
                  category_id: category.id
+
+  puts "#{p.title} created!"
 end
 
 puts Cowsay.say 'Created 1000 products', :cow
 
 
-100.times do
-  review = Review.all.sample
-  Review.create rating: rand(6),
-                body: Faker::Hipster.paragraph
+Product.all.each do |product|
+  5.times do
+    product.reviews.create(rating: rand(6),
+                           body: Faker::Hipster.paragraph
+    )
+    puts "Review created!"
+  end
 end
+
+# 100.times do
+#   review = Review.all.sample
+#   Review.create rating: rand(6),
+#                 body: Faker::Hipster.paragraph
+# end
 
 puts Cowsay.say 'Created 100 reviews', :cow
