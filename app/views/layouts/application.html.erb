@@ -6,19 +6,29 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
 
   <body>
-    <%= link_to 'Home', root_path %>
-  |
-    <%= link_to 'About Us', about_path %>
-    |
-    <%= link_to 'Contact', contact_path %>
-    |
-    <%= link_to 'All Products', products_path %>
-    |
-    <%= link_to 'New Product', new_product_path %>
+    <div class="container">
+      <%= link_to 'Home', root_path %>
+      |
+      <%= link_to 'About Us', about_path %>
+      |
+      <%= link_to 'Contact', contact_path %>
+      |
+      <%= link_to 'All Products', products_path %>
+      |
+      <%= link_to 'New Product', new_product_path %>
     <hr>
-    <%= yield %>
+       <% if flash[:notice] %>
+         <div class="flash-notice"><%= flash[:notice] %></div>
+       <% elsif flash[:alert] %>
+         <div class="flash-alert"><%= flash[:alert] %></div>
+       <% end %>
+       <%#= notice || alert %>
+     <hr>
+     <%= yield %>
+    </div>
   </body>
 </html>

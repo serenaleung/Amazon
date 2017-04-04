@@ -1,4 +1,9 @@
 class Product < ApplicationRecord
+
+  belongs_to :category
+  has_many :reviews
+
+
   before_save :capitalize_title
 #
 #

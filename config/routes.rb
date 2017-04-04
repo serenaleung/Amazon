@@ -5,6 +5,10 @@ Rails.application.routes.draw do
    get('/contact', {to: 'contact#index'})
    post('/contact', {to: 'contact#create', as: 'contact_submit'})
 
+   resources :products do
+     resources :reviews, only: [:create, :destroy]
+   end
+   
 #  (HTTP Verb: delete - path: /questions/:id ) ==> questions controller / destroy action
 #  (HTTP Verb: get - path: /questions/:id/edit ) ==> questions controller / edit action
 #  (HTTP Verb: get - path: /questions/:id ) ==> questions controller / show action
@@ -17,9 +21,10 @@ Rails.application.routes.draw do
   #  post('/questions/:id/comments', {to: 'comments#create'})
   #  get('/faq',{to: 'home#faq'})
 
-  
 
-   resources :products
+
+  #  resources :products
+
 
   root 'welcome#index'
 end

@@ -2,10 +2,11 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    # @reviews = Reviews.new
   end
 
   def create
-    product_params = params.require(:product).permit([:title, :description, :price])
+    product_params = params.require(:product).permit([:title, :description, :price, :category_id])
     @product = Product.new product_params
     if @product.save
       redirect_to product_path(@product)
@@ -16,6 +17,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
+    @review = Review.new
   end
 
   def index
@@ -28,7 +30,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find params[:id]
-    product_params = params.require(:product).permit([:title, :description, :price])
+    product_params = params.require(:product).permit([:title, :description, :price, :category_id])
 
     if @product.update(product_params)
       redirect_to product_path(@product)
@@ -41,7 +43,6 @@ class ProductsController < ApplicationController
     product = Product.find params[:id]
     product.destroy
     redirect_to products_path
-
   end
 
 
