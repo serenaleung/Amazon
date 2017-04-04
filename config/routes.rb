@@ -23,9 +23,13 @@ Rails.application.routes.draw do
 
 
 
-  #  resources :products
-  
+  # resources :products
   resources :users, only: [:new, :create]
+
+  # prevents password to show in address bar
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
 
   root 'welcome#index'
 end
