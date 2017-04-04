@@ -6,8 +6,9 @@ class ReviewsController < ApplicationController
     @review.product = @product
 
     if @review.save
-      redirect_to question_path(@product), notice: 'Review Created!'
+      redirect_to product_path(@product), notice: 'Review Created!'
     else
+      flash.now[:alert] = "#{@review.errors.full_messages.join(', ')}"
       render '/products/show'
     end
   end
