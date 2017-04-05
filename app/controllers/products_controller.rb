@@ -36,7 +36,10 @@ class ProductsController < ApplicationController
     @product = Product.find params[:id]
     product_params = params.require(:product).permit([:title, :description, :price, :category_id])
 
-    if @product.update(product_params)
+    if @product.user != current_user
+      flash[:alert] = "You cannot change a product that you did not create"
+      redirect_to product_path(@product)
+    elsif @product.update(product_params)
       redirect_to product_path(@product)
     else
       render :edit
