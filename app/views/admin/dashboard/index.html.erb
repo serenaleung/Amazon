@@ -1,0 +1,29 @@
+<h1>Admin Dashboard</h1>
+
+<!-- <h5>Number of product:</h5> <%#= Product.all.count %> -->
+<h5>Number of product:</h5> <%= "#{@product}" %>
+<h5>Number of reviews:</h5> <%= "#{@review}" %>
+<h5>Number of users:</h5> <%= "#{@user}" %>
+
+<br>
+<hr/>
+<% @products.each do |product| %>
+<p><%= link_to product.title, product_path(product.id) %></p>
+<p><%= product.id %></p>
+<hr>
+<% end %>
+
+<div class="row">
+   <h3>User Database</h3>
+   <% @users.each do |user| %>
+   <div class="col-md-4">
+     <span><strong> First name: </strong>
+       <%= user.first_name %></span><br />
+     <span><strong> Last name: </strong>
+       <%= user.last_name %></span><br />
+     <span><strong> Email: </strong>
+       <%= user.email%></span><br />
+       <hr />
+   </div>
+   <% end %>
+ </div>

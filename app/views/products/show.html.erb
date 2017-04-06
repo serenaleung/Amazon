@@ -3,17 +3,15 @@
 <p><%= @product.price %></p>
 <p><%= @product.user.first_name %></p>
 
-<!-- edit_question_path needs id so pass in @product -->
-<%= link_to 'Edit', edit_product_path(@product) %>
+<% if can? :edit, @product %>
+  <%= link_to 'Edit', edit_product_path(@product) %>
+<% end %>
 
-<!-- link_to by default sends a get request, so it gets intercepted -->
-<!-- <%= link_to 'Delete', product_path(@product) %> -->
-
-<%# Rails enables us to make links end non-GET requests by setting the
-    `method` attribute for `link_to`. Rails uses Javascript to accomplish that. %>
-<%= link_to 'Delete', product_path(@product),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?'} %>
+<% if can? :destroy, @product %>
+  <%= link_to 'Delete', product_path(@product),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+<% end %>
 
 <hr/>
 <h2>Write a Review</h2>

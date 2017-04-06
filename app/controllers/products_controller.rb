@@ -33,23 +33,27 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find params[:id]
-    product_params = params.require(:product).permit([:title, :description, :price, :category_id])
-
-    if @product.user != current_user
-      flash[:alert] = "You cannot change a product that you did not create"
-      redirect_to product_path(@product)
+    if !(can? :edit, @product)
+      redirect_to root_path, alert: 'access denied'
     elsif @product.update(product_params)
-      redirect_to product_path(@product)
+      redirect_to product_path(@product), notice: 'Product updated'
     else
-      render :edit
     end
   end
 
   def destroy
-    product = Product.find params[:id]
-    product.destroy
-    redirect_to products_path
+    # product = Product.find params[:id]
+    # product.destroy
+
+    # local variable because only redirecting
+    # only need instance variables if sharing with a template
+    if can? :destroy, @product
+      @product.destroy
+      redirect_to products_path, notice: 'Product deleted'
+    else
+      redirect_to root_path, alert: 'access denied'
+    end
+    # render plain: 'in products destroy'
   end
 
   private
