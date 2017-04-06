@@ -13,6 +13,7 @@ class Ability
       # this gives the admin user super powers by enabling them to perform any
       # action on any model
       can :manage, :all
+      
     end
 
     # in this ex. we're saying that the user can edit a question if the user

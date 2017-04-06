@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_id session[:user_id] if user_signed_in?
   end
   helper_method :current_user
+
+  def authorize_admin
+    redirect_to root_path, status: 401 unless current_user.is_admin
+  end
 end

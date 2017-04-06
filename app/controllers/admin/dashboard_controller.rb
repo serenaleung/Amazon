@@ -1,4 +1,6 @@
 class Admin::DashboardController < ApplicationController
+  before_action :authorize_admin
+
   def index
     @product = Product.count
     @review = Review.count
@@ -6,4 +8,6 @@ class Admin::DashboardController < ApplicationController
     @products = Product.all
     @users = User.all
   end
+
+
 end
