@@ -44,6 +44,8 @@ group :development, :test do
   gem 'awesome_print'
   gem 'interactive_editor'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
