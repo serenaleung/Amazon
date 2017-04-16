@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406223318) do
+ActiveRecord::Schema.define(version: 20170413231818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(version: 20170406223318) do
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
     t.integer  "user_id"
+    t.integer  "review_id"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+    t.index ["review_id"], name: "index_products_on_review_id", using: :btree
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
 
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170406223318) do
   end
 
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "reviews"
   add_foreign_key "products", "users"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"

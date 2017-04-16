@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :user
   has_many :reviews, dependent: :destroy
+  has_many :products, dependent: :nullify
 
 
   before_save :capitalize_title

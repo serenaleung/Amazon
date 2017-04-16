@@ -85,5 +85,9 @@ RSpec.describe ProductsController, type: :controller do
        end
      end
    end
+
+   describe 'Reviews' do
+     context ''
+   end
  end
 end
