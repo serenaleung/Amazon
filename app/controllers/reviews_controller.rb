@@ -9,6 +9,8 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
+      #sending an email to the question's owner
+      ReviewsMailer.notify_product_owner(@review).deliver_now
       redirect_to product_path(@product), notice: 'Review Created!'
     else
       flash.now[:alert] = "#{@review.errors.full_messages.join(', ')}"
@@ -22,4 +24,5 @@ class ReviewsController < ApplicationController
     @review.destroy
   redirect_to product_path(@product), notice: 'Review Deleted'
   end
+
 end
