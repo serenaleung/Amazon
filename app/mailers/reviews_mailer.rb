@@ -4,7 +4,7 @@ class ReviewsMailer < ApplicationMailer
       # rails controllers
       @review = review
       @product = review.product
-      @user = @product.user #.user because in product.rb you wrote product belongs to user
+      @user = @reviews.user #.user because in product.rb you wrote product belongs to user
 
       # this will render app/views/reviews_mailer/notify_product_owner.html.erb
       # and/or app/views/reviews_mailer/notify_product_owner.text.erb

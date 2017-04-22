@@ -9,6 +9,10 @@ Rails.application.routes.draw do
      resources :reviews, only: [:create, :destroy]
    end
 
+   resources :reviews do
+     resources :likes, only: [:create, :destroy]
+   end
+
 #  (HTTP Verb: delete - path: /questions/:id ) ==> questions controller / destroy action
 #  (HTTP Verb: get - path: /questions/:id/edit ) ==> questions controller / edit action
 #  (HTTP Verb: get - path: /questions/:id ) ==> questions controller / show action
@@ -24,7 +28,9 @@ Rails.application.routes.draw do
 
 
   # resources :products
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create] do
+    resources :likes, only: [:index]
+  end
 
   # prevents password to show in address bar
   resources :sessions, only: [:new, :create] do
