@@ -1,7 +1,9 @@
 <h1>Reviews Liked</h1>
 
 <% @reviews.each do |r| %>
+
 <h3> <%= link_to r.product.title, product_path(r.product) %></h3>
+
 <%= r.body %>
 <hr>
 <% end %>

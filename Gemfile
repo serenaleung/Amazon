@@ -32,9 +32,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan', '~> 1.10'
 gem "font-awesome-rails"
+
 gem 'delayed_job_active_record'
 gem 'sinatra', '2.0.0.rc2'
 gem "delayed_job_web"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
