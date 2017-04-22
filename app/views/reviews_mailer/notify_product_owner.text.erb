@@ -1,5 +1,14 @@
 Hello <%= @product.user.full_name %>,
 <%= @user.full_name.capitalize %> has just has just left a review for your product <%= @product.title %>.
-Click <%= link_to "here", product_url(@product) %> to view the review product.
+Click <%= link_to "here", product_url(@product) %> to view the review of the product.
+
+Your product.
+<%= @product.description %>
+$<%= @product.price %>
+
+Here's the review they left.
+<%= @review.body %>
+<%= @review.rating %>
+
 Regards,
 Awesome Products Team

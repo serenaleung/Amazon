@@ -9,6 +9,6 @@ class ReviewsMailer < ApplicationMailer
       # this will render app/views/reviews_mailer/notify_product_owner.html.erb
       # and/or app/views/reviews_mailer/notify_product_owner.text.erb
       # mail(to: 'serenaleung1@gmail.com', subject: 'Test email')
-      mail(to: '@user.email', subject: 'You got an review!') if @user
+      mail(to: @user.email, subject: 'You got an answer!') if @user
     end
 end

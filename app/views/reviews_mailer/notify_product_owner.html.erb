@@ -1,5 +1,14 @@
 <p>Hello <%= @product.user.full_name %>,</p>
 <p><%= @user.full_name.capitalize %> has just left a review for your product titled: <%= @product.title %>.</p>
-<p>Click <%= link_to "here", product_url(@product) %> to view the review.</p>
+<p>Click <%= link_to "here", product_url(@product) %>  to view the review of the product. </p>
+
+<h4>Your product.</h4>
+<p><%= @product.description %></p>
+<p>$<%= @product.price %></p>
+
+<h4>Here's the review they left.</h4>
+<p><%= @review.body %></p>
+<p><%= @review.rating %></p>
+
 <p>Regards,</p>
 <p>Awesome Products Team</p>
