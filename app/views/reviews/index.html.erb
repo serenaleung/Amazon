@@ -1,1 +1,8 @@
-<h1>Review</h1>
+<h1>Reviews Liked</h1>
+
+<% @reviews.each do |r| %>
+<h3> <%= r.product.title %></h3>
+<h3> <%#= link_to r.product.title, r.product_url(product) %></h3>
+<%= r.body %>
+<hr>
+<% end %>

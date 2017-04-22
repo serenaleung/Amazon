@@ -13,13 +13,21 @@ class Ability
       # this gives the admin user super powers by enabling them to perform any
       # action on any model
       can :manage, :all
-      
+
     end
 
     # in this ex. we're saying that the user can edit a question if the user
     # is the owner (creator) of that question
     can [:edit, :destroy], Product do |product|
       product.user == user
+    end
+
+    can :like, Review do |r|
+      user != r.user
+    end
+
+    cannot :like, Review do |r|
+      user == r.user
     end
 
     # OR

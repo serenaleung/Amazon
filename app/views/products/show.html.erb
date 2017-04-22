@@ -18,14 +18,14 @@
 
 <%= @review.errors.full_messages.join(', ') %>
 <%= form_for [@product, @review] do |f| %>
-<div class="form-group">
-  <%= f.label :rating %>
-  <%= f.text_field :rating, { class: 'form-control' }%>
-</div>
-<div class="form-group">
-  <%= f.label :body %>
-  <%= f.text_area :body, { class: 'form-control' }%>
-</div>
+  <div class="form-group">
+    <%= f.label :rating %>
+    <%= f.text_field :rating, { class: 'form-control' }%>
+  </div>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, { class: 'form-control' }%>
+  </div>
 
 <!-- <%= f.submit %> -->
   <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
@@ -41,8 +41,19 @@
       <p>Rating: <%= r.rating %></p>
       <p>Comments: <%= r.body %></p>
       <p>Creator: <%= r.user.first_name %></p>
+
+      <% if user_signed_in? && can?(:like, r) %>
+        <% if r.liked_by?(current_user) %>
+          <%= link_to fa_icon("heart"),
+          review_like_path(r, r.like_for(current_user)), method: :delete %>
+        <% else %>
+          <%= link_to fa_icon("heart-o"), review_likes_path(r), method: :post %>
+        <% end %>
+      <% end %>
+
+      <span><%= pluralize(r.likes.count, 'like') %></span>
+
       <%= link_to 'Delete', [@product, r],
       method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
-
   <% end %>
