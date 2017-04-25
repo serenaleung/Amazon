@@ -5,6 +5,9 @@ class Product < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :products, dependent: :nullify
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
 
   before_save :capitalize_title
 #

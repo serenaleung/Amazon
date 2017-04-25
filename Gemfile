@@ -36,6 +36,7 @@ gem "font-awesome-rails"
 gem 'delayed_job_active_record'
 gem 'sinatra', '2.0.0.rc2'
 gem "delayed_job_web"
+gem 'chosen-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

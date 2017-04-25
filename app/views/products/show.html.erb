@@ -1,7 +1,14 @@
 <h1><%= @product.title %></h1>
 <p><%= @product.description %></p>
 <p><%= @product.price %></p>
-<p><%= @product.user.first_name %></p>
+<p>Created by: <%= @product.user.first_name %></p>
+<%= console %>
+ <%#= link_to @product.tags.pluck(:name).join(', '), product_path(product.id), :class => 'tagStyle' %>
+<p>Tags:</p>
+<% @product.tags.pluck(:name).each do |t| %>
+  <button type="button" class="btn btn-sm tagStyle <%= t.downcase.tr(' ', '_') %>"><%= t %></button>
+<% end %>
+
 
 <% if can? :edit, @product %>
   <%= link_to 'Edit', edit_product_path(@product) %>
@@ -51,7 +58,26 @@
         <% end %>
       <% end %>
 
-      <span><%= pluralize(r.likes.count, 'like') %></span>
+    <!-- <span><%#= pluralize(r.likes.count, 'like') %></span> -->
+      <%#= link_to 'Vote Up', review_votes_path(r, vote: { is_up: true }), method: :post%>
+      <%#= link_to "Vote Down", review_votes_path(r, vote: { is_up: false }), method: :post %>
+
+      <% user_vote = r.votes.find_by_user_id current_user if r.votes.present?%>
+        <div class='vote-section'>
+      <% if user_vote.nil? %>
+        <%= link_to fa_icon('thumbs-o-up'), review_votes_path(r, { is_up: true }), method: :post %>
+        <%= link_to fa_icon('thumbs-o-down'), review_votes_path(r, { is_up: false }), method: :post %>
+      <% elsif user_vote.is_up? %>
+        <%= link_to fa_icon('thumbs-up'), vote_path(user_vote), method: :delete %>
+        <%= link_to fa_icon('thumbs-o-down'), vote_path(user_vote, { is_up: false }), method: :patch %>
+      <% else %>
+        <%= link_to fa_icon('thumbs-o-up'), vote_path(user_vote, {is_up: true}), method: :patch %>
+        <%= link_to fa_icon('thumbs-down'), vote_path(user_vote), method: :delete %>
+      <% end %>
+      (
+      <%= r.votes_count %>
+      )
+      </div>
 
       <%= link_to 'Delete', [@product, r],
       method: :delete, data: { confirm: 'Are you sure?' } %>

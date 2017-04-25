@@ -11,9 +11,12 @@ Rails.application.routes.draw do
      resources :reviews, only: [:create, :destroy]
    end
 
-   resources :reviews do
+   resources :reviews, shallow: true do
      resources :likes, only: [:create, :destroy]
+        resources :votes, only: [:create, :destroy, :update]
    end
+
+
 
 #  (HTTP Verb: delete - path: /questions/:id ) ==> questions controller / destroy action
 #  (HTTP Verb: get - path: /questions/:id/edit ) ==> questions controller / edit action

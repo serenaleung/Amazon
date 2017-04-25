@@ -6,8 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Create categories
 ['Books', 'TV Shows', 'Movies', 'Clothes', 'Music', 'Food'].each do |category|
   Category.create(name: category)
+end
+
+# Create tags
+['Books', 'TV Shows', 'Movies', 'Clothes', 'Music', 'Food'].each do |tag|
+  Tag.create(name: tag)
 end
 
 # Create users

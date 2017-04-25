@@ -1,3 +1,27 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tagStyle {
+   color: white;
+   border-radius: 1.2em !important;
+}
+
+.books {
+  background-color: rgb(110, 32, 164);
+}
+.tv_shows {
+  background-color: rgb(185, 208, 6);
+}
+.movies {
+  background-color: rgb(23, 172, 193);
+}
+.clothes {
+  background-color: orange;
+}
+.music {
+  background-color: rgb(201, 110, 190);
+}
+.food {
+  background-color: rgb(226, 12, 75);
+}
