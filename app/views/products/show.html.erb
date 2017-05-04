@@ -5,8 +5,8 @@
 <%= console %>
  <%#= link_to @product.tags.pluck(:name).join(', '), product_path(product.id), :class => 'tagStyle' %>
 <p>Tags:</p>
-<% @product.tags.pluck(:name).each do |t| %>
-  <button type="button" class="btn btn-sm tagStyle <%= t.downcase.tr(' ', '_') %>"><%= t %></button>
+<% @product.tags.each do |t| %>
+  <button type="button" class="btn btn-sm tagStyle <%= t.name.downcase.tr(' ', '_') %>"><%= link_to t.name, tag_path(t) %></button>
 <% end %>
 
 

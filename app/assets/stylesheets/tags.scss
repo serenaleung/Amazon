@@ -1,0 +1,20 @@
+// Place all the styles related to the tags controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.tagStyle {
+  a {
+    color: white;
+
+    &:visited {
+      color: white;
+    }
+
+    &:hover {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+  }
+}

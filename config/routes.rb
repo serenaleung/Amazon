@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         resources :votes, only: [:create, :destroy, :update]
    end
 
-
+   resources :tags, only: [:show]
 
 #  (HTTP Verb: delete - path: /questions/:id ) ==> questions controller / destroy action
 #  (HTTP Verb: get - path: /questions/:id/edit ) ==> questions controller / edit action
@@ -29,6 +29,14 @@ Rails.application.routes.draw do
   #  get('/questions/:id', {to: 'questions#show'})
   #  post('/questions/:id/comments', {to: 'comments#create'})
   #  get('/faq',{to: 'home#faq'})
+
+  namespace :api, defaults: { format: :json } do
+      	namespace :v1 do
+      		# /api/v1/questions.json # => INDEX
+            # /api/v1/questions/1.json # => SHOW
+      		resources :products, only: [:index, :show]
+      	end
+      end
 
 
 
