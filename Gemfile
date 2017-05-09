@@ -38,6 +38,10 @@ gem 'delayed_job_active_record'
 gem 'sinatra', '2.0.0.rc2'
 gem "delayed_job_web"
 gem 'chosen-rails'
+gem 'rack-cors'
+gem 'simple_form'
+gem 'friendly_id'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,14 +1,34 @@
 class Api::V1::ProductsController < ApplicationController
   before_action :authenticate_user
+  skip_before_filter :verify_authenticity_token
   def index
-    @products = Product.last(20)
+    @products = Product.all.order(created_at: 'DESC')
 
-    render json: @products
+    # render json: @products
   end
 
   def show
-    product = Product.find params[:id]
-    render json: product
+    @product = Product.find params[:id]
+    # render json: product
+  end
+
+  def create
+    product_params =
+    params.require(:product).permit(:title, :description, :price)
+      product = Product.new product_params
+      product.user = @user
+      if product.save
+        head :ok
+      else
+        render json: {error: product.errors.full_messages.join(', ')}
+      end
+    # @product = Product.new title: params[:title], description: params[:description], price: params[:price]
+    # @product.user = @user
+    #   if @product.save
+    #     render json: {result: 'product created'}
+    #   else
+    #     render json: {result: @product.errors.full_messages.join(', ')}
+    #   end
   end
 
   private

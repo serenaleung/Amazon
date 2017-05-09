@@ -24,6 +24,10 @@ class Product < ApplicationRecord
 #   def self.search(string)
 #     where(['title ILIKE ? OR body ILIKE ?', "%#{string}%", "%#{string}%"]).order(['body ILIKE ?', "%#{string}%"], ['title ILIKE ?', "%#{string}%"])
 #   end
+
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history, :finders]
+
 #
 #
 end
